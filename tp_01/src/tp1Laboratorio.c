@@ -10,15 +10,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "calcu.h"
 
-void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int banderaoperandoUno, int banderaoperandoDos);
-int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError);
-int utn_pedirFloatAUsuario(float* pResultado, char* variableTexto, char* textoError);
-void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
-void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
-void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
-int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoDivision);
-int factorialEnteros(float operandoUno, float operandoDos, int *factorialUno, int *factorialDos);
 
 int main(void)
 {
@@ -28,6 +21,8 @@ setbuf(stdout,NULL);
 int menu;
 float operandoUno;
 float operandoDos;
+int opeUno;
+int opeDos;
 float suma;
 float resta;
 float multiplicacion;
@@ -69,18 +64,48 @@ do
 						restarNumerosFloat(operandoUno, operandoDos, &resta);
 						multiplicarNumerosFloat(operandoUno, operandoDos, &multiplicacion);
 						banderaDivision=dividirNumerosFloat(operandoUno, operandoDos, &division);
-						factorialEnteros(operandoUno, operandoDos, &factorialUno, &factorialDos);
+						banderaFactorialUno=factorialEnteros(operandoUno, &factorialUno, &opeUno);
+						banderaFactorialDos=factorialEnteros(operandoDos, &factorialDos, &opeDos);
+						banderaCalculoDeResultados=0;
 					}
 					break;
 				case 4:
-					if(banderaCalculoDeResultados==-1 && (banderaoperandoUno==-1 || banderaoperandoDos==-1))
+					if(banderaCalculoDeResultados==0)
+					{
+						printf("El resultado de %.2f + %.2f es: %.2f\n", operandoUno, operandoDos, suma);
+						printf("El resultado de %.2f - %.2f es: %.2f\n", operandoUno, operandoDos, resta);
+						printf("El resultado de %.2f x %.2f es: %.2f\n", operandoUno, operandoDos, multiplicacion);
+						if(banderaDivision==0)
+						{
+							printf("El resultado de %.2f / %.2f es: %.2f\n", operandoUno, operandoDos, division);
+						}
+						else
+						{
+							printf("No es Posible la division Entre 0\n");
+						}
+						if (banderaFactorialUno==0)
+						{
+							printf("El Factorial de %d es %d\n", opeUno, factorialUno);
+						}
+						else
+						{
+							printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeUno);
+						}
+						if (banderaFactorialDos==0)
+						{
+							printf("El Factorial de %d es %d\n", opeDos, factorialDos);
+						}
+						else
+						{
+							printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeDos);
+						}
+					}
+					else
 					{
 						printf("Recuerde Deben Ingresar Primero los dos Operando y luego la opcion de calcular operaciones\n");
-					}else
-					{
-
 					}
 					break;
+
 			}
 
 	}while(menu!=5);
@@ -88,139 +113,3 @@ do
 
 	return EXIT_SUCCESS;
 }
-
-void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int banderaOperandoUno, int banderaOperandoDos)
-{
-	if(banderaOperandoUno==0 && pMenu!=NULL)
-	{
-		printf("Presione 1 para Ingresar 1er Operando:A=%.2f\n", operandoUno);
-	}else
-	{
-		printf("Presione 1 para Ingresar 1er Operando:A=X\n");
-	}
-	if(banderaOperandoDos==0)
-	{
-		printf("Presione 2 para Ingresar 2do Operando:B=%.2f\n", operandoDos);
-	}else
-	{
-		printf("Presione 2 para Ingresar 2do Operando:B=Y\n");
-	}
-	printf("Presione 3 para calcular todas las operaciones\n");
-	printf("presione 4 para informar resultados\n");
-	printf("Presione 5 para salir\n");
-	scanf("%d", pMenu);
-}
-
-int utn_pedirFloatAUsuario(float* pResultado, char* variableTexto, char* textoError)
-{
-	float buffer;
-	int retorno;
-	if(pResultado != NULL && variableTexto != NULL && textoError != NULL)
-	{
-			printf("%s\n",variableTexto);
-			fflush( stdin );
-			retorno=scanf("%f", &buffer);
-
-			if (retorno==1)
-			{
-				*pResultado=buffer;
-				retorno=0;
-			}
-			else
-			{
-				printf("%s\n", textoError);
-				retorno=-1;
-			}
-	}
-	return retorno;
-}
-
-int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError)
-{
-	int buffer;
-	int retorno=-1;
-	if(pResultado != NULL && min<max && reintentos >=0 && variableTexto != NULL && textoError != NULL && min<max && reintentos>=0)
-	{
-		do
-		{
-			printf("%s",variableTexto);
-			fflush( stdin );
-			scanf("%d", &buffer);
-
-			if (scanf("%d", &buffer)==1 && buffer>=min && buffer<=max)
-			{
-				retorno = 0; // OK
-				*pResultado=buffer;
-				break;
-			}
-			else
-			{
-				printf("%s, %s\n", textoError, variableTexto);
-				reintentos--;
-			}
-		}while (reintentos >=0);
-	}
-	return retorno;
-}
-
-void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
-{
-	if (pResultado!=NULL)
-	{
-		*pResultado=operandoUno+operandoDos;
-	}
-}
-void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
-{
-	if (pResultado!=NULL)
-	{
-		*pResultado=operandoUno-operandoDos;
-	}
-}
-void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
-{
-	if (pResultado!=NULL)
-	{
-		*pResultado=operandoUno*operandoDos;
-	}
-}
-int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoDivision)
-{
-	int retorno=-1;
-	if (pResultadoDivision != NULL && operandoDos!=0)
-	{
-		*pResultadoDivision=operandoUno/operandoDos;
-		retorno=0;
-	}
-	return retorno;
-}
-
-int factorialEnteros(float operando, int *factorial)
-{
-	operando=(int)operando;
-	int fact=1;
-	int i;
-	int retorno=-1;
-	if (operando>0)
-	{
-		for(i=num; i>0; i--)
-		{
-			fact=fact*i;
-		}
-		*factorial=fact;
-		retorno=0;
-	}
-	else
-	{
-		if (operando==0)
-		{
-			*factorial=1;
-			retorno=0;
-		}
-	}
-
-
-	return retorno;
-
-}
-
