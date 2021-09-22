@@ -9,9 +9,9 @@
 #include <stdlib.h>
 
 
-void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int banderaOperandoUno, int banderaOperandoDos)
+void mostrarMenuUsuario(float operandoUno, float operandoDos, int banderaOperandoUno, int banderaOperandoDos)
 {
-	if(banderaOperandoUno==0 && pMenu!=NULL)
+	if(banderaOperandoUno==0)
 	{
 		printf("Presione 1 para Ingresar 1er Operando:A=%.2f\n", operandoUno);
 	}else
@@ -28,59 +28,6 @@ void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int ba
 	printf("Presione 3 para calcular todas las operaciones\n");
 	printf("presione 4 para informar resultados\n");
 	printf("Presione 5 para salir\n");
-	scanf("%d", pMenu);
-}
-
-int utn_pedirFloatAUsuario(float* pResultado, char* variableTexto, char* textoError)
-{
-	float buffer;
-	int retorno;
-	if(pResultado != NULL && variableTexto != NULL && textoError != NULL)
-	{
-			printf("%s\n",variableTexto);
-			fflush( stdin );
-			retorno=scanf("%f", &buffer);
-
-			if (retorno==1)
-			{
-				*pResultado=buffer;
-				retorno=0;
-			}
-			else
-			{
-				printf("%s\n", textoError);
-				retorno=-1;
-			}
-	}
-	return retorno;
-}
-
-int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError)
-{
-	int buffer;
-	int retorno=-1;
-	if(pResultado != NULL && min<max && reintentos >=0 && variableTexto != NULL && textoError != NULL && min<max && reintentos>=0)
-	{
-		do
-		{
-			printf("%s",variableTexto);
-			fflush( stdin );
-			scanf("%d", &buffer);
-
-			if (scanf("%d", &buffer)==1 && buffer>=min && buffer<=max)
-			{
-				retorno = 0; // OK
-				*pResultado=buffer;
-				break;
-			}
-			else
-			{
-				printf("%s, %s\n", textoError, variableTexto);
-				reintentos--;
-			}
-		}while (reintentos >=0);
-	}
-	return retorno;
 }
 
 void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)

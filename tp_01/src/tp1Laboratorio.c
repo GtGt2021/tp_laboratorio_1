@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "calcu.h"
-
+#include "utn_validador.h"
 
 int main(void)
 {
@@ -38,7 +38,9 @@ int banderaFactorialDos;
 do
 	{
 		fflush( stdin );
-		mostrarMenuUsuario(&menu, operandoUno, operandoDos, banderaoperandoUno, banderaoperandoDos);
+		mostrarMenuUsuario(operandoUno, operandoDos, banderaoperandoUno, banderaoperandoDos);
+		if (utn_pedirIntAUsuario(&menu, 1, 5, 3, "Ingrese una opcion [1-5]","opcion Invalida")==0)
+		{
 
 			switch(menu)
 			{
@@ -67,11 +69,16 @@ do
 						banderaFactorialUno=factorialEnteros(operandoUno, &factorialUno, &opeUno);
 						banderaFactorialDos=factorialEnteros(operandoDos, &factorialDos, &opeDos);
 						banderaCalculoDeResultados=0;
+						printf("calculando Resultados, ");
+						system("pause");
 					}
 					break;
 				case 4:
 					if(banderaCalculoDeResultados==0)
 					{
+						printf("\n------------------------------------------\n");
+						printf("\n------------------------------------------\n");
+						printf("\n------------------------------------------\n");
 						printf("El resultado de %.2f + %.2f es: %.2f\n", operandoUno, operandoDos, suma);
 						printf("El resultado de %.2f - %.2f es: %.2f\n", operandoUno, operandoDos, resta);
 						printf("El resultado de %.2f x %.2f es: %.2f\n", operandoUno, operandoDos, multiplicacion);
@@ -83,13 +90,31 @@ do
 						{
 							printf("No es Posible la division Entre 0\n");
 						}
-						if (banderaFactorialUno==0)
+						if (banderaFactorialUno==0 && banderaFactorialDos==0)
 						{
-							printf("El Factorial de %d es %d\n", opeUno, factorialUno);
+							printf("El Factorial de %d es: %d y el Factorial de %d es: %d\n", opeUno, factorialUno, opeDos, factorialDos);
 						}
 						else
 						{
-							printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeUno);
+							if (banderaFactorialUno==0 && banderaFactorialDos!=0)
+							{
+								printf("El Factorial de %d es: %d y %d esta fuera de rango (0-12) para calcular su Factorial", opeUno, factorialUno, opeDos);
+							}
+							else
+							{
+								if (banderaFactorialUno!=0 && banderaFactorialDos==0)
+								{
+									printf("%d esta fuera de rango (0-12) para calcular su Factorial y el Factorial de %d es: %d", opeUno, opeDos, factorialDos);
+								}
+								else
+								{
+									printf("%d esta fuera de rango (0-12) para calcular su Factorial y %d esta fuera de rango (0-12) para calcular su Factorial", opeUno, opeDos);
+								}
+							}
+						}
+						/*else
+						{
+							if printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeUno);
 						}
 						if (banderaFactorialDos==0)
 						{
@@ -98,15 +123,26 @@ do
 						else
 						{
 							printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeDos);
-						}
+						}*/
+						printf("\n------------------------------------------\n");
+						printf("\n------------------------------------------\n");
+						system("pause");
 					}
 					else
 					{
 						printf("Recuerde Deben Ingresar Primero los dos Operando y luego la opcion de calcular operaciones\n");
 					}
 					break;
-
+				case 5:
+					printf("Has Seleccionado Salir... Hasta Luego...");
+					break;
 			}
+		}
+		else
+		{
+			printf("Ingresaste Varias Veces Una opcion Invalida, Hasta luego...");
+			break;
+		}
 
 	}while(menu!=5);
 

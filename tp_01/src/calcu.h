@@ -8,9 +8,7 @@
 #ifndef CALCU_H_
 #define CALCU_H_
 
-void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int banderaoperandoUno, int banderaoperandoDos);
-int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError);
-int utn_pedirFloatAUsuario(float* pResultado, char* variableTexto, char* textoError);
+void mostrarMenuUsuario(float operandoUno, float operandoDos, int banderaoperandoUno, int banderaoperandoDos);
 void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
 void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
 void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
