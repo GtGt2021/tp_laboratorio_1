@@ -14,12 +14,11 @@
 void mostrarMenuUsuario(int* pMenu, float operandoUno, float operandoDos, int banderaoperandoUno, int banderaoperandoDos);
 int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError);
 int utn_pedirFloatAUsuario(float* pResultado, char* variableTexto, char* textoError);
-//int factorialCalculadora(int operandoUno, int operandoDos);
-float sumarNumerosFloat(float operandoUno, float operandoDos);
-float restarNumerosFloat(float operandoUno, float operandoDos);
-float multiplicarNumerosFloat(float operandoUno, float operandoDos);
+void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
+void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
+void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
 int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoDivision);
-
+int factorialEnteros(float operandoUno, float operandoDos, int *factorialUno, int *factorialDos);
 
 int main(void)
 {
@@ -29,11 +28,18 @@ setbuf(stdout,NULL);
 int menu;
 float operandoUno;
 float operandoDos;
+float suma;
+float resta;
+float multiplicacion;
+float division;
+int factorialUno;
+int factorialDos;
 int banderaoperandoUno=-1;
 int banderaoperandoDos=-1;
 int banderaCalculoDeResultados=-1;
-int banderaDivision=-1;
-float resultadoDivision;
+int banderaDivision;
+int banderaFactorialUno;
+int banderaFactorialDos;
 do
 	{
 		fflush( stdin );
@@ -59,11 +65,11 @@ do
 						printf("Debe Ingresar Ambos Operadores para usar esta opcion\n");
 					}else
 					{
-						sumarNumerosFloat(operandoUno, operandoDos);
-						restarNumerosFloat(operandoUno, operandoDos);
-						multiplicarNumerosFloat(operandoUno, operandoDos);
-						banderaDivision=dividirNumerosFloat(operandoUno, operandoDos, &resultadoDivision);
-						banderaCalculoDeResultados=0;
+						sumarNumerosFloat(operandoUno, operandoDos, &suma);
+						restarNumerosFloat(operandoUno, operandoDos, &resta);
+						multiplicarNumerosFloat(operandoUno, operandoDos, &multiplicacion);
+						banderaDivision=dividirNumerosFloat(operandoUno, operandoDos, &division);
+						factorialEnteros(operandoUno, operandoDos, &factorialUno, &factorialDos);
 					}
 					break;
 				case 4:
@@ -72,10 +78,7 @@ do
 						printf("Recuerde Deben Ingresar Primero los dos Operando y luego la opcion de calcular operaciones\n");
 					}else
 					{
-						sumarNumerosFloat(operandoUno, operandoDos);
-						restarNumerosFloat(operandoUno, operandoDos);
-						multiplicarNumerosFloat(operandoUno, operandoDos);
-						dividirNumerosFloat(operandoUno, operandoDos, &resultadoDivision);
+
 					}
 					break;
 			}
@@ -160,23 +163,26 @@ int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char
 	return retorno;
 }
 
-float sumarNumerosFloat(float operandoUno, float operandoDos)
+void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
 {
-	float resultado;
-	resultado=operandoUno+operandoDos;
-	return resultado;
+	if (pResultado!=NULL)
+	{
+		*pResultado=operandoUno+operandoDos;
+	}
 }
-float restarNumerosFloat(float operandoUno, float operandoDos)
+void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
 {
-	float resultado;
-	resultado=operandoUno-operandoDos;
-	return resultado;
+	if (pResultado!=NULL)
+	{
+		*pResultado=operandoUno-operandoDos;
+	}
 }
-float multiplicarNumerosFloat(float operandoUno, float operandoDos)
+void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado)
 {
-	float resultado;
-	resultado=operandoUno*operandoDos;
-	return resultado;
+	if (pResultado!=NULL)
+	{
+		*pResultado=operandoUno*operandoDos;
+	}
 }
 int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoDivision)
 {
@@ -188,9 +194,33 @@ int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoD
 	}
 	return retorno;
 }
-/*
-int factorialCalculadora(int operandoUno, int operandoDos)
+
+int factorialEnteros(float operando, int *factorial)
 {
+	operando=(int)operando;
+	int fact=1;
+	int i;
+	int retorno=-1;
+	if (operando>0)
+	{
+		for(i=num; i>0; i--)
+		{
+			fact=fact*i;
+		}
+		*factorial=fact;
+		retorno=0;
+	}
+	else
+	{
+		if (operando==0)
+		{
+			*factorial=1;
+			retorno=0;
+		}
+	}
+
+
+	return retorno;
 
 }
-*/
+
