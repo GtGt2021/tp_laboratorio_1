@@ -5,8 +5,14 @@
  *      Author: gt
  */
 
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "utn_validador.h"
+#define LEN_INT 11
+
 
 
 void mostrarMenuUsuario(float operandoUno, float operandoDos, int banderaOperandoUno, int banderaOperandoDos)
@@ -69,7 +75,7 @@ int factorialEnteros(float operando, int *factorial, int *operandoInt)
 	int fact=1;
 	int i;
 	int retorno=-1;
-	if (numero>0 && numero<13)
+	if (factorial!=NULL && operandoInt!=NULL && numero>0 && numero<13)
 	{
 		for(i=numero; i>0; i--)
 		{

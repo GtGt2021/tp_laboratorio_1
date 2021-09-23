@@ -10,9 +10,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "calcu.h"
 #include "utn_validador.h"
-
+#define LEN_INT 11
 int main(void)
 {
 
@@ -50,7 +52,7 @@ do
 				case 2:
 					if(banderaoperandoUno!=0)
 						{
-							printf("Primero debe Ingresar el Operando Uno\n");
+							printf("Primero debe Ingresar el Operando Uno\n\n\n");
 						}else
 						{
 							banderaoperandoDos=utn_pedirFloatAUsuario(&operandoDos, "Ingrese Operando 2:\n", "error, intentelo nuevamente\n");
@@ -59,7 +61,7 @@ do
 				case 3:
 					if(banderaoperandoDos==-1)
 					{
-						printf("Debe Ingresar Ambos Operadores para usar esta opcion\n");
+						printf("Debe Ingresar Ambos Operadores para usar esta opcion\n\n\n");
 					}else
 					{
 						sumarNumerosFloat(operandoUno, operandoDos, &suma);
@@ -69,8 +71,8 @@ do
 						banderaFactorialUno=factorialEnteros(operandoUno, &factorialUno, &opeUno);
 						banderaFactorialDos=factorialEnteros(operandoDos, &factorialDos, &opeDos);
 						banderaCalculoDeResultados=0;
-						printf("calculando Resultados, ");
-						system("pause");
+						printf("Calculando Resultados......... ");
+						printf("Resultados Almacenados\n\n\n\n");
 					}
 					break;
 				case 4:
@@ -84,7 +86,7 @@ do
 						printf("El resultado de %.2f x %.2f es: %.2f\n", operandoUno, operandoDos, multiplicacion);
 						if(banderaDivision==0)
 						{
-							printf("El resultado de %.2f / %.2f es: %.2f\n", operandoUno, operandoDos, division);
+							printf("El resultado de %.2f / %.2f es: %.4f\n", operandoUno, operandoDos, division);
 						}
 						else
 						{
@@ -112,25 +114,14 @@ do
 								}
 							}
 						}
-						/*else
-						{
-							if printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeUno);
-						}
-						if (banderaFactorialDos==0)
-						{
-							printf("El Factorial de %d es %d\n", opeDos, factorialDos);
-						}
-						else
-						{
-							printf("No es Posible hallar Factorial para %d, fuera de rango (0-12) \n", opeDos);
-						}*/
+						banderaCalculoDeResultados=-1;
 						printf("\n------------------------------------------\n");
 						printf("\n------------------------------------------\n");
 						system("pause");
 					}
 					else
 					{
-						printf("Recuerde Deben Ingresar Primero los dos Operando y luego la opcion de calcular operaciones\n");
+						printf("Tiene Que calcular operaciones Primero\n\n\n");
 					}
 					break;
 				case 5:
