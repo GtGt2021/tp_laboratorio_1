@@ -9,9 +9,9 @@
 #define CALCU_H_
 
 void mostrarMenuUsuario(float operandoUno, float operandoDos, int banderaoperandoUno, int banderaoperandoDos);
-void sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
-void restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
-void multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
+int sumarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
+int restarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
+int multiplicarNumerosFloat(float operandoUno, float operandoDos, float *pResultado);
 int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoDivision);
 int factorialEnteros(float operando, int *factorial, int *operandoInt);
 

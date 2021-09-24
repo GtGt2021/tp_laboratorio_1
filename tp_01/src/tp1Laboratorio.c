@@ -78,9 +78,8 @@ do
 				case 4:
 					if(banderaCalculoDeResultados==0)
 					{
-						printf("\n------------------------------------------\n");
-						printf("\n------------------------------------------\n");
-						printf("\n------------------------------------------\n");
+						printf("\n\n------------------------------------------\n\n");
+
 						printf("El resultado de %.2f + %.2f es: %.2f\n", operandoUno, operandoDos, suma);
 						printf("El resultado de %.2f - %.2f es: %.2f\n", operandoUno, operandoDos, resta);
 						printf("El resultado de %.2f x %.2f es: %.2f\n", operandoUno, operandoDos, multiplicacion);
@@ -115,9 +114,10 @@ do
 							}
 						}
 						banderaCalculoDeResultados=-1;
-						printf("\n------------------------------------------\n");
-						printf("\n------------------------------------------\n");
-						system("pause");
+						banderaoperandoUno=-1;
+						banderaoperandoDos=-1;
+						printf("\n\n\n------------------------------------------\n\n\n");
+
 					}
 					else
 					{
