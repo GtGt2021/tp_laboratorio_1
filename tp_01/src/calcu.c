@@ -119,9 +119,10 @@ int dividirNumerosFloat(float operandoUno, float operandoDos, float *pResultadoD
 	return retorno;
 }
 /**
-*\ brief recibe un numero flotante lo castea a int ya que no podemos sacar factorial a un float
-*\ luego validamos que este entre los dos valores admitidos para el tamaño admitido al tipo de datos int
-*\ (0-12) contamos en forma decreciente desde el numero parseado a entero hasta el 1 y
+*\ brief recibe un numero flotante lo castea a int luego validamos que este entre los dos valores
+*\ admitidos (0-12) y que el numero ingresado sea un numero entero restando el numero casteado a int -
+*\ el ingresado por el usuario si este resultado da cero se procede a calcular el factorial
+*\ contamos en forma decreciente desde el numero parseado a entero hasta el 1 y
 *\ multiplicando una variable inicialisada en 1 por cada uno de los numeros que vamos bajando
 *\ param operando es el valor float que se quiere sacar factorial
 *\ param *factorial valor del puntero de memoria a donde vamos a enviar el resultado del factorial
@@ -135,22 +136,19 @@ int factorialEnteros(float operando, int *factorial, int *operandoInt)
 	int fact=1;
 	int i;
 	int retorno=-1;
-	if (factorial!=NULL && operandoInt!=NULL && numero>0 && numero<13)
+	if (factorial!=NULL && operandoInt!=NULL && numero>=0 && numero<13 && (numero-operando)==0)
 	{
+		if (numero==0)
+		{
+			*factorial=1;
+			return 0;
+		}
 		for(i=numero; i>0; i--)
 		{
 			fact=fact*i;
 		}
 		*factorial=fact;
 		retorno=0;
-	}
-	else
-	{
-		if (operando==0)
-		{
-			*factorial=1;
-			retorno=0;
-		}
 	}
 
 	return retorno;

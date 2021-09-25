@@ -77,7 +77,7 @@ int utn_miFgets(char cadena[], int longitud)
 int utn_obtenerEntero(int *pResultado)
 {
 	int retorno=-1;
-	char buffer[13];
+	char buffer[LEN_INT];
 	fflush(stdin);
 	if (pResultado!=NULL)
 	{
@@ -92,7 +92,7 @@ int utn_obtenerEntero(int *pResultado)
 }
 
 /**
-*\ brief Pide un valor al Usuario (que puede ser tipo float), valida que el dato ingresado por el usuario pase la validacion
+*\ brief Pide un valor al Usuario (tipo float), valida que el dato ingresado por el usuario pase la validacion
 *\ del scanf de ser asi devuelve al puntero pResultado el valor del dato recibido
 *\ param pResultado puntero al espacio de memoria donde se almacenara el valor del tipo float en caso de ser recibido correctamente
 *\ param variableTexto mensaje para pedir al usuario el entero

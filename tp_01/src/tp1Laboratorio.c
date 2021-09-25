@@ -99,17 +99,17 @@ do
 						{
 							if (banderaFactorialUno==0 && banderaFactorialDos!=0)
 							{
-								printf("El Factorial de %d es: %d y %d esta fuera de rango (0-12) para calcular su Factorial", opeUno, factorialUno, opeDos);
+								printf("El Factorial de %d es: %d y %.4f esta fuera de rango (0-12) o no es un entero", opeUno, factorialUno, operandoDos);
 							}
 							else
 							{
 								if (banderaFactorialUno!=0 && banderaFactorialDos==0)
 								{
-									printf("%d esta fuera de rango (0-12) para calcular su Factorial y el Factorial de %d es: %d", opeUno, opeDos, factorialDos);
+									printf("%.4f esta fuera de rango (0-12) o no es un entero y el Factorial de %d es: %d", operandoUno, opeDos, factorialDos);
 								}
 								else
 								{
-									printf("%d esta fuera de rango (0-12) para calcular su Factorial y %d esta fuera de rango (0-12) para calcular su Factorial", opeUno, opeDos);
+									printf("%.4f esta fuera de rango (0-12) o no es un entero y %.4f esta fuera de rango (0-12) o no es un entero", operandoUno, operandoDos);
 								}
 							}
 						}
