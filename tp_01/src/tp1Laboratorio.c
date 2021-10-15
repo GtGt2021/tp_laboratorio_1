@@ -37,7 +37,9 @@ int banderaCalculoDeResultados=-1;
 int banderaDivision;
 int banderaFactorialUno;
 int banderaFactorialDos;
-do
+char letras[50];
+
+	do
 	{
 		fflush( stdin );
 		mostrarMenuUsuario(operandoUno, operandoDos, banderaoperandoUno, banderaoperandoDos);
@@ -136,6 +138,8 @@ do
 		}
 
 	}while(menu!=5);
+
+
 
 
 	return EXIT_SUCCESS;

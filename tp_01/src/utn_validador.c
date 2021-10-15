@@ -12,6 +12,7 @@
 #include "calcu.h"
 #include "utn_validador.h"
 #define LEN_INT 11
+#define LEN_CHAR 50
 
 /**
 *\ brief verifica que cada caracter de cadena sea un numero solo permitiendo
@@ -138,7 +139,7 @@ int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char
 {
 	int buffer;
 	int retorno=-1;
-	if(pResultado != NULL && min<max && reintentos >=0 && variableTexto != NULL && textoError != NULL && min<max && reintentos>=0)
+	if(pResultado != NULL && min<max && reintentos >=0 && variableTexto != NULL && textoError != NULL)
 	{
 		do
 		{
@@ -148,6 +149,131 @@ int utn_pedirIntAUsuario(int* pResultado, int min, int max, int reintentos, char
 			{
 				retorno = 0; // OK
 				*pResultado=buffer;
+				break;
+			}
+			else
+			{
+				printf("%s, %s\n", textoError, variableTexto);
+				reintentos--;
+			}
+		}while (reintentos >=0);
+	}
+	return retorno;
+}
+
+int utn_esNombreYApellido(char cadena[])
+{
+	int retorno=-1;
+	int i=0;
+	if(cadena != NULL && strlen(cadena)>0)
+	{
+
+		while (cadena[i]!='\0')
+		{
+			if( cadena[i]<' ' || (cadena[i]>' ' && cadena[i]<'A') || (cadena[i]>'Z' && cadena[i]<'a')|| (cadena[i]>'z'))
+			{
+				retorno=-1;
+				break;
+			}
+			i++;
+			retorno=0;
+		}
+
+	}
+	return retorno;
+}
+int utn_esLetra(char cadena[])
+{
+	int retorno=-1;
+	int i=0;
+	if(cadena != NULL && strlen(cadena)>0)
+	{
+
+		while (cadena[i]!='\0')
+		{
+			if((cadena[i]<'A') || (cadena[i]>'Z' && cadena[i]<'a')|| (cadena[i]>'z'))
+			{
+				retorno=-1;
+				break;
+			}
+			i++;
+			retorno=0;
+		}
+
+	}
+	return retorno;
+}
+
+int utn_obtenerNombreYApellido(char cadena[])
+{
+	int retorno=-1;
+	char buffer[LEN_CHAR];
+	fflush(stdin);
+	if (cadena!=NULL)
+	{
+
+		if (utn_miFgets(buffer, sizeof(buffer))==0 && utn_esNombreYApellido(buffer)==0)
+		{
+			strcpy(cadena, buffer);
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
+int utn_obtenerLetras(char cadena[])
+{
+	int retorno=-1;
+	char buffer[LEN_CHAR];
+	fflush(stdin);
+	if (cadena!=NULL)
+	{
+
+		if (utn_miFgets(buffer, sizeof(buffer))==0 && utn_esLetra(buffer)==0)
+		{
+			strcpy(cadena, buffer);
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
+int utn_pedirLetrasAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError)
+{
+	int retorno=-1;
+	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL)
+	{
+		do
+		{
+			printf("%s\n",variableTexto);
+			fflush( stdin );
+			if (utn_obtenerLetras(cadena)==0)
+			{
+				retorno = 0;
+				break;
+			}
+			else
+			{
+				printf("%s, %s\n", textoError, variableTexto);
+				reintentos--;
+			}
+		}while (reintentos >=0);
+	}
+	return retorno;
+}
+
+int utn_pedirNombreYApellido(char cadena[], int reintentos, char* variableTexto, char* textoError)
+{
+	int retorno=-1;
+	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL)
+	{
+		do
+		{
+			printf("%s\n",variableTexto);
+			fflush( stdin );
+			if (utn_obtenerNombreYApellido(cadena)==0)
+			{
+				retorno = 0;
 				break;
 			}
 			else
