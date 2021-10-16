@@ -25,7 +25,7 @@ int loadEmployee(Employee* list, int len);
 int addEmployee2(Employee lista[]);
 int printEmployees(Employee lista[], int len);
 int gen_esLibre(Employee lista[], int len, int *posicionLibre);
-int findEmployeeById(Employee lista[], int len, int idBuscado, int *posicionIdBuscado);
+int findEmployeeById(Employee lista[], int len, int idBuscado);
 int gen_modificarLista(Employee lista[]);
 int printPosition(Employee lista[]);
 int removeEmployee(Employee lista[], int len, int idParaDarBaja);

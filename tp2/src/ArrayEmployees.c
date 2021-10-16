@@ -226,7 +226,7 @@ int printEmployees(Employee list[], int len)
  * return retorna -1 si la posicion el array de la estructura viene con errores el id o el tamaño del array son menores a 0
  *  y 0 si fue encontrado el id
  */
-int findEmployeeById(Employee list[], int len, int idBuscado, int *posicionIdBuscado)
+int findEmployeeById(Employee list[], int len, int idBuscado)
 {
 	int retorno=-1;
 	if (list!=NULL && len>0 && idBuscado>0)
@@ -235,8 +235,7 @@ int findEmployeeById(Employee list[], int len, int idBuscado, int *posicionIdBus
 		{
 			if(list[i].isEmpty_employee==OCUPADO && list[i].id_employee==idBuscado)
 			{
-				*posicionIdBuscado=i;
-				retorno=0;
+				retorno=i;
 				break;
 			}
 		}
@@ -363,7 +362,8 @@ int removeEmployee(Employee lista[], int len, int idParaDarBaja)
 	if (lista!=NULL && len>0 && idParaDarBaja>0)
 	{
 		retorno=-1;
-		if (findEmployeeById(lista, len, idParaDarBaja, &i)==0)
+		i=findEmployeeById(lista, len, idParaDarBaja);
+		if (i>=0)
 		{
 			lista[i].isEmpty_employee=VACIO;
 			retorno=0;

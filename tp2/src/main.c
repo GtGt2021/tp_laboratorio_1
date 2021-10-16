@@ -58,7 +58,8 @@ int main(void) {
 					printEmployees(arrayEmployee, EMPLOYEES_LEN);
 					if(utn_pedirIntPositivoAUsuario(&auxModificar, 3, "Ingrese el Id del Empleado a Modificar", "Error")==0)
 					{
-						if(findEmployeeById(arrayEmployee, EMPLOYEES_LEN, auxModificar, &auxIsFree)==0)
+						auxIsFree=findEmployeeById(arrayEmployee, EMPLOYEES_LEN, auxModificar);
+						if(auxIsFree>=0)
 						{
 							gen_modificarLista(&arrayEmployee[auxIsFree]);
 						}
