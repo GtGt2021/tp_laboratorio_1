@@ -114,7 +114,7 @@ int loadEmployee(Employee* list, int len)
 	return retorno;
 }
 /**brief funcion sencilla que se dedica a pedir la info necesaria para cargar los campos de los empleados nombre apellido sector salario
- *
+ * param cadenas de caracter name y lastname punteros int sector y float salary
  * return retorna 0 si todos los datos se cargaron ok y -1 si hubo algun error
  */
 
@@ -202,7 +202,7 @@ int printPosition(Employee *posicion)
 /**brief recibimos el array de la Estructura y el tamaño de la misma la recorremos con un For todo el array y
  * llamamos a la funcion que imprime por posicion
  *  param Lista completa del array estructura y el tamaño
- * return retorna -1 si la posicion de la estructura viene con errores y 0 si fue exitosa la impresion
+ * return retorna -1 si el achivo de la estructura viene con errores y 0 si fue exitosa la impresion
  */
 int printEmployees(Employee list[], int len)
 {
@@ -219,18 +219,18 @@ int printEmployees(Employee list[], int len)
 }
 
 /**brief Verificamos que el array venga bien el tamaño del array mayor q 0 y el id buscado sea un int positivo
- * recibimos el array de la Estructura y el tamaño de la misma la recorremos con un For por todo el array y
+ * recorremos el array de la Estructura  con un For por todo el array y
  * primero comparamos que la posicion este ocupada isempty=1 y luego preguntamos si el id de esa posicion es igual
- * al id buscado y retornamos por puntero la posicion en la que esta el id
- *  param recibo el array de la estructura el tamaño del array el id qu buscamos retornamos por puntero la posicion del id buscado
- * return retorna -1 si la posicion el array de la estructura viene con errores el id o el tamaño del array son menores a 0
- *  y 0 si fue encontrado el id
+ * al id buscado y retornamos por return la posicion en el array que tiene el id
+ *  param recibo el array de la estructura el tamaño del array el id qu buscamos
+ * return retorna -2 errores en el archivo - 1 si no encontro el id y numero >= 0 que indica que encontro y ese es la posicion del array donde esta
  */
 int findEmployeeById(Employee list[], int len, int idBuscado)
 {
-	int retorno=-1;
+	int retorno=-2;
 	if (list!=NULL && len>0 && idBuscado>0)
 	{
+		retorno =-1;
 		for(int i=0; i<len; i++)
 		{
 			if(list[i].isEmpty_employee==OCUPADO && list[i].id_employee==idBuscado)
@@ -245,10 +245,10 @@ int findEmployeeById(Employee list[], int len, int idBuscado)
 }
 
 /**brief recibimos una pocision del array de la estructura
- * validamos que el puntero este bien y pedimos al usuario mediane un menu que desea modificar vamos al suitch y modificamos
- * lo que el usuario quiere
+ * validamos que el puntero este bien y pedimos al usuario mediante un menu que desea modificar vamos al suitch y modificamos
+ * lo que el usuario quiere cambiando la info anterior por la nueva en este campo
  *  param recibo puntero a la pocision X en el arrray estructura
- * return retorna -1 si la posicion de la estructura viene con errores o se ingreso mal la opcion del menu
+ * return retorna si el puntero de la estructura viene con errores o se ingreso mal la opcion del menu
  *  y 0 si fue exitosa la MODIFICACION
  */
 int gen_modificarLista(Employee lista[])
@@ -298,7 +298,12 @@ int gen_modificarLista(Employee lista[])
 	return retorno;
 }
 
-
+/**brief busca una posicion libre en el Array recorre toda la lista comparando cada uno de sus casilleros isEmpty==VACIO al encontrar el primero hace un break
+ * y retorna la posicion de memoria libre para ser cargada
+ * param array de estrucura y tamaño
+ * return -2 falla en el archivo -1 si la memoria esta llena y >=0 es porque encontro lugar y esa es la posicion libre
+ *
+ */
 int isFree(Employee list[], int len)
 {
 	// devuelve -2 si la falla es error de array o tamaño del array
@@ -349,11 +354,11 @@ int gen_esLibre(Employee lista[], int len, int *posicionLibre)
 
 /**brief Verificamos que el array venga bien el tamaño del array y el id para dar de baja mayor q 0
  * llamamos a la funcio buscar ID para que nos de la poscion en la que esta el id que queremos borrar
- * en la misma funcion preguntamos si es 0 es priqeu encontro el id y de ser asi cambiamos el estado para esa posicion de
- * isempty a 0 es decir queda libre
+ * la cargamos en una variable entera i la cual si es 0< nos devuelve que no existe ese id si es 0 o mayor
+ *  seria la posicion en el array a dar de baja entramos al if y ponemos el campo isEmpty VACIO
  *  param recibo el array de la estructura el tamaño del array y el id que se quiee elimimnar
  * return retorna -2 si el array de la estructura viene con errores, el tamaño del array  o el id para dar baja es menor a 0
- *  0 si fue dado de baja (SI NO SE ENCONTRO EL ID RETORNA -1)
+ *  -1 si no existe, 0 si fue dado de baja
  */
 int removeEmployee(Employee lista[], int len, int idParaDarBaja)
 {
@@ -373,8 +378,8 @@ int removeEmployee(Employee lista[], int len, int idParaDarBaja)
 	return retorno;
 }
 /**
- * brief recorremos el array para ver si tiene informacion cargada es decir si isEmpty= 1 en alguna posicion
- * apenas enccuenta una posicion conrta el for con un break y nos devuelve un mensaje que nos indica que si tiene info el mismo
+ * brief  funcion para saber si hay datos cargados recorremos el array para ver si tiene informacion cargada es decir si isEmpty= 1 en alguna posicion
+ * apenas enccuenta una posicion corta el for con un break y nos devuelve un mensaje que nos indica que si tiene info el mismo
  * param array estructura y el tamaño del array
  * return -1 si no encontro datos es decir el array esta vacio y retorna 0 si tiene al menos 1 dato cargado
  */
@@ -395,25 +400,8 @@ int gen_verificarQueTieneDatosLista(Employee lista[], int len)
 	}
 	return retorno;
 }
-/*
-int gen_verificarIdExiste(Employee list[], int len, int idBuscado)
-{
-	int retorno=-1;
-	if (list!=NULL && len>0 && idBuscado>0)
-	{
-		for(int i=0; i<len; i++)
-		{
-			if(list[i].isEmpty_employee==1 && list[i].id_employee==idBuscado)
-			{
-				retorno=0;
-				break;
-			}
-		}
-	}
 
-	return retorno;
-}
-*/
+
 /**
 *\ brief ingresa de manera forzada parametros a una posicion de la lista con el fin de poder
 *\ realizar pruebas de manera mas rapida
@@ -592,23 +580,4 @@ static int cantidadEmpleadosMayorMedia(Employee lista[], int len, float promedio
 	return retorno;
 }
 
-/*  gen_Altaforzada(&arrayEmployee[0], 1, 122, "Gustavo", "vargas");
-	gen_Altaforzada(&arrayEmployee[1], 2, 456, "Alberto", "padron");
-	gen_Altaforzada(&arrayEmployee[2], 2, 451, "maximiliano", "mendoza");
-	gen_Altaforzada(&arrayEmployee[3], 6, 526, "mariana", "gonzalez");
-	gen_Altaforzada(&arrayEmployee[4], 5, 123, "jorg", "labrador");
-	gen_Altaforzada(&arrayEmployee[8], 3, 122, "Gust", "vargas");
-	gen_Altaforzada(&arrayEmployee[9], 2, 456, "Alber", "padron");
-	gen_Altaforzada(&arrayEmployee[45], 1, 451, "maxi", "mendoza");
-	gen_Altaforzada(&arrayEmployee[80], 4, 526, "maria", "gonzalez");
-	gen_Altaforzada(&arrayEmployee[58], 5, 123, "jorgna", "labrador");
-	gen_Altaforzada(&arrayEmployee[85], 3, 122, "Gustvo", "vargas");
-	gen_Altaforzada(&arrayEmployee[71], 2, 456, "Alo", "padron");
-	gen_Altaforzada(&arrayEmployee[73], 2, 451, "maximo", "mendoza");
-	gen_Altaforzada(&arrayEmployee[72], 1, 526, "marian", "gonzalez");
-	gen_Altaforzada(&arrayEmployee[98], 2, 123, "jorgina", "labrador");
-	gen_Altaforzada(&arrayEmployee[98], 4, 122, "Gustavo", "vargas");
-    gen_Altaforzada(&arrayEmployee[78], 5, 456, "Alberto", "padron");
-	gen_Altaforzada(&arrayEmployee[77], 3, 451, "maximiliano", "mendoza");
-	gen_Altaforzada(&arrayEmployee[66], 5, 526, "mariana", "gonzalez");
-	gen_Altaforzada(&arrayEmployee[55], 6, 123, "jorgina", "labrador");*/
+

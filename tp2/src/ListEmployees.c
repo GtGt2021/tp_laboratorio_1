@@ -28,13 +28,13 @@ int menuParaImprimirInformes(Employee list[], int len)
 				if(sortEmployed(list, len, orden)==0)
 					{
 					printEmployees(list, len);
-					system("pause");
+					//system("pause");
 					}
 			}
 			break;
 		case 2:
 			calcularsalarios(list, len);
-			system("pause");
+			//system("pause");
 			break;
 		}
 		retorno=0;
