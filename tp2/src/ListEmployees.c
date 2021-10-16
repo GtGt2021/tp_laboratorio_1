@@ -18,7 +18,7 @@ int menuParaImprimirInformes(Employee list[], int len)
 	int menu;
 	int orden;
 
-	if (list!=NULL && len>0 && utn_pedirIntAUsuarioConLimites(&menu, 1, 2, 3, "Presion\n1-listado de Empleados Ordenados \n2.-Calculo Promedios", "Error")==0)
+	if (list!=NULL && len>0 && utn_pedirIntAUsuarioConLimites(&menu, 1, 2, 3, "Menu Informes, Presiona: \n1-listado de Empleados Ordenados \n2.-Calculo Promedios", "Error")==0)
 	{
 		switch (menu)
 		{
@@ -27,17 +27,22 @@ int menuParaImprimirInformes(Employee list[], int len)
 			{
 				if(sortEmployed(list, len, orden)==0)
 					{
-					printf("llegue casi");
-					gen_imprimirLista(list, len);
+					printEmployees(list, len);
 					system("pause");
 					}
 			}
 			break;
 		case 2:
 			calcularsalarios(list, len);
+			system("pause");
 			break;
 		}
 		retorno=0;
 	}
 	return retorno;
 }
+
+
+
+
+

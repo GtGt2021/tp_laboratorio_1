@@ -21,12 +21,12 @@ int utn_obtenerEntero(int *pResultado);
 */
 int utn_pedirEmailAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError);
 int utn_pedirLetrasAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError);
-int utn_pedirNombreYApellidoAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError);
+int utn_pedirNombreYApellidoAUsuario(char cadena[], int len , int reintentos, char* variableTexto, char* textoError);
 int utn_pedirIntAUsuarioConLimites(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError);
 int utn_pedirFloatAUsuarioConLimites(float* pResultado, float min, float max, int reintentos, char* variableTexto, char* textoError);
 int utn_pedirFloatAUsuario(float* pResultado, int reintentos, char* variableTexto, char* textoError);
 int utn_pedirIntAUsuario(int* pResultado, int reintentos, char* variableTexto, char* textoError);
-int utn_PedirCualquierCaracterAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError);
+int utn_PedirCualquierCaracterAUsuario(char cadena[], int len, int reintentos, char* variableTexto, char* textoError);
 int utn_pedirFloatPositivoAUsuario(float* pResultado, int reintentos, char* variableTexto, char* textoError);
 int utn_PedirCuitAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError);
 int utn_pedirIntPositivoAUsuario(int* pResultado, int reintentos, char* variableTexto, char* textoError);

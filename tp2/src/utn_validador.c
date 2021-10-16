@@ -26,10 +26,10 @@ static int utn_esFloat(char cadena[]);
 static int utn_esNombreYApellido(char cadena[]);
 static int utn_esLetra(char cadena[]);
 static int utn_esEmail(char cadena[]);
-static int utn_obtenerNombreYApellido(char cadena[]);
+static int utn_obtenerNombreYApellido(char cadena[], int len);
 static int utn_obtenerLetras(char cadena[]);
 static int utn_obtenerEmail(char cadena[]);
-static int utn_obtenerCualquierCaracter(char cadena[]);
+static int utn_obtenerCualquierCaracter(char cadena[], int len);
 static int utn_esCualquierCaracter(char cadena[]);
 static int utn_esFloatPositivo(char cadena[]);
 static int utn_esCuit(char cadena[]);
@@ -290,10 +290,10 @@ static int utn_esCualquierCaracter(char cadena[])
 	return retorno;
 }
 
-static int utn_obtenerCualquierCaracter(char cadena[])
+static int utn_obtenerCualquierCaracter(char cadena[], int len)
 {
 	int retorno=-1;
-	char buffer[LEN_MAIL];
+	char buffer[len];
 	fflush(stdin);
 	if (cadena!=NULL)
 	{
@@ -399,10 +399,10 @@ static int utn_esEmail(char cadena[])
 	return retorno;
 }
 
-static int utn_obtenerNombreYApellido(char cadena[])
+static int utn_obtenerNombreYApellido(char cadena[], int len)
 {
 	int retorno=-1;
-	char buffer[LEN_NAME];
+	char buffer[len];
 	fflush(stdin);
 	if (cadena!=NULL)
 	{
@@ -616,16 +616,16 @@ int utn_pedirLetrasAUsuario(char cadena[], int reintentos, char* variableTexto, 
 	return retorno;
 }
 
-int utn_pedirNombreYApellidoAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError)
+int utn_pedirNombreYApellidoAUsuario(char cadena[], int len, int reintentos, char* variableTexto, char* textoError)
 {
 	int retorno=-1;
-	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL)
+	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL && len>0)
 	{
 		do
 		{
 			printf("%s\n",variableTexto);
 			fflush( stdin );
-			if (utn_obtenerNombreYApellido(cadena)==0)
+			if (utn_obtenerNombreYApellido(cadena, len)==0)
 			{
 				retorno = 0;
 				break;
@@ -716,16 +716,16 @@ int utn_pedirFloatAUsuario(float* pResultado, int reintentos, char* variableText
 	return retorno;
 }
 
-int utn_PedirCualquierCaracterAUsuario(char cadena[], int reintentos, char* variableTexto, char* textoError)
+int utn_PedirCualquierCaracterAUsuario(char cadena[], int len, int reintentos, char* variableTexto, char* textoError)
 {
 	int retorno=-1;
-	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL)
+	if(cadena != NULL && reintentos >=0 && variableTexto != NULL && textoError != NULL && len>0)
 	{
 		do
 		{
 			printf("%s\n",variableTexto);
 			fflush( stdin );
-			if (utn_obtenerCualquierCaracter(cadena)==0)
+			if (utn_obtenerCualquierCaracter(cadena, len)==0)
 			{
 				retorno = 0;
 				break;
