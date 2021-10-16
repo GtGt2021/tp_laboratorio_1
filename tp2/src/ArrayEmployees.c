@@ -388,3 +388,33 @@ int sortEmployed(Employee lista[], int len, int orden)
 	return retorno;
 }
 
+int calcularsalarios(Employee lista[], int len)
+{
+	int retorno=-1;
+	float acumulador=0;
+	int contador=0;
+	float promedio;
+	int contadorDos=0;
+	if (lista!=NULL && len>0)
+	{
+		for(int i=0; i<len; i++)
+		{
+			if (lista[i].isEmpty_employee==OCUPADO)
+			{
+				acumulador=acumulador+lista[i].salary_employee;
+				contador=contador+1;
+			}
+		}
+		promedio=acumulador/contador;
+		for(int j=0; j<len; j++)
+		{
+			if (lista[j].isEmpty_employee==OCUPADO && lista[j].salary_employee>promedio)
+			{
+				contadorDos=contadorDos+1;
+			}
+		}
+	printf("El Total Pagado en Salarios es de %.2f, el salario promedio %.2f y %d empleados superan el salario promedio\n", acumulador, promedio, contadorDos);
+	}
+
+	return retorno;
+}

@@ -115,8 +115,14 @@ int main(void) {
 				}
 				break;
 			case 4:
-
-				menuParaImprimirInformes(arrayEmployee, EMPLOYEES_LEN);
+				if (gen_verificarQueTieneDatosLista(arrayEmployee, EMPLOYEES_LEN)==0)
+				{
+					menuParaImprimirInformes(arrayEmployee, EMPLOYEES_LEN);
+				}
+				else
+				{
+					printf("No tienes Ningun Empleado Cargado en Sistema");
+				}
 				break;
 		}
 		}while(menu!=0);

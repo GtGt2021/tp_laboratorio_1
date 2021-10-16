@@ -11,8 +11,6 @@
 #include <ctype.h>
 #include "utn_validador.h"
 #include "ArrayEmployees.h"
-#define LASTNAME_LEN 51
-#define NAME_LEN 51
 
 int menuParaImprimirInformes(Employee list[], int len)
 {
@@ -36,9 +34,8 @@ int menuParaImprimirInformes(Employee list[], int len)
 			}
 			break;
 		case 2:
-			//totalYPromedioYCuantosSuperanLaMediaEmpleados(list, len);
+			calcularsalarios(list, len);
 			break;
-
 		}
 		retorno=0;
 	}

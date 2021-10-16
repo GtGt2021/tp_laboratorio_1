@@ -30,7 +30,7 @@ int gen_verificarQueTieneDatosLista(Employee lista[], int len);
 int gen_verificarIdExiste(Employee list[], int len, int idBuscado);
 int gen_Altaforzada(Employee lista[], int sector, float salario, char nombre[], char apellido[]);
 int sortEmployed(Employee lista[], int len, int orden);
-
+int calcularsalarios(Employee lista[], int len);
 
 
 #endif /* ARRAYEMPLOYEES_H_ */

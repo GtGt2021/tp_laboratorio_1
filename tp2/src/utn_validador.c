@@ -77,9 +77,9 @@ static int utn_esNumeroPositivo(char cadena[])
 		{
 			i=1;
 		}
+
 		while (cadena[i]!='\0')
 		{
-
 			if(cadena[i]>'9' || cadena[i]<'0')
 			{
 				retorno=-1;
